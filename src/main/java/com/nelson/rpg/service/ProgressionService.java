@@ -9,6 +9,15 @@ public class ProgressionService {
 
         character.addExperience(amount);
 
+
+        while (character.getExperience() >= 100) {
+
+            character.levelUp();
+
+            character.removeExperience(100);
+
+        }
+
     }
 
 }

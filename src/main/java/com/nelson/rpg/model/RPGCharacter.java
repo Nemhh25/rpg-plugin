@@ -31,4 +31,14 @@ public class RPGCharacter {
         this.experience += amount;
 
     }
+
+    public void levelUp() {
+        this.level++;
+    }
+
+    public void removeExperience(int amount) {
+
+        this.experience = Math.max(0, this.experience - amount);
+
+    }
 }
