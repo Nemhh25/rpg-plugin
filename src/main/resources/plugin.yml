@@ -12,3 +12,7 @@ commands:
   addxp:
     description: Adiciona experiência
     usage: /addxp <jogador> <quantidade>
+
+  attribute:
+    description: Aumenta um atributo do personagem
+    usage: /attribute <strength | defense | intelligence>

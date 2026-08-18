@@ -11,6 +11,7 @@ public class ProgressionService {
 
         while (character.getExperience() >= 100) {
             character.levelUp();
+            character.addAttributePoints(3);
 
             character.removeExperience(100);
             levelsGained++;
