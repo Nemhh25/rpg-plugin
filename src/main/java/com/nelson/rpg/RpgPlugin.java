@@ -8,6 +8,8 @@ import com.nelson.rpg.command.AddXpCommand;
 import com.nelson.rpg.service.AttributeService;
 import com.nelson.rpg.service.ProgressionService;
 import org.bukkit.plugin.java.JavaPlugin;
+import com.nelson.rpg.listener.CombatListener;
+import com.nelson.rpg.service.CombatService;
 
 
 public class RpgPlugin extends JavaPlugin {
@@ -20,8 +22,10 @@ public class RpgPlugin extends JavaPlugin {
         playerManager = new PlayerManager();
         ProgressionService progressionService = new ProgressionService();
         AttributeService attributeService = new AttributeService();
+        CombatService combatService = new CombatService();
 
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(playerManager), this);
+        getServer().getPluginManager().registerEvents(new CombatListener(playerManager, combatService), this);
 
         getCommand("rpg").setExecutor(new RpgCommand(playerManager));
 
