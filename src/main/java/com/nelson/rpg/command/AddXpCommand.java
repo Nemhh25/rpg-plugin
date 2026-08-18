@@ -1,5 +1,6 @@
 package com.nelson.rpg.command;
 
+import com.nelson.rpg.model.ProgressionResult;
 import com.nelson.rpg.manager.PlayerManager;
 import com.nelson.rpg.model.RPGCharacter;
 import com.nelson.rpg.service.ProgressionService;
@@ -24,12 +25,7 @@ public class AddXpCommand implements CommandExecutor {
 
 
     @Override
-    public boolean onCommand(
-            CommandSender sender,
-            Command command,
-            String label,
-            String[] args
-    ) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (args.length != 2) {
 
@@ -67,8 +63,7 @@ public class AddXpCommand implements CommandExecutor {
         }
 
 
-        RPGCharacter character =
-                playerManager.getCharacter(target.getUniqueId());
+        RPGCharacter character = playerManager.getCharacter(target.getUniqueId());
 
 
         if (character == null) {
@@ -80,21 +75,19 @@ public class AddXpCommand implements CommandExecutor {
         }
 
 
-        progressionService.addExperience(character, amount);
+        ProgressionResult result = progressionService.addExperience(character, amount);
 
 
-        sender.sendMessage(
-                "§aVocê adicionou §e" + amount +
-                        " XP para §f" + target.getName()
-        );
+        sender.sendMessage("§aVocê adicionou §e" + amount + " XP para §f" + target.getName());
 
 
-        target.sendMessage(
-                "§aVocê recebeu §e" + amount + " XP!"
-        );
+        if (result.getLevelsGained() > 0) {
+
+            target.sendMessage("§6Parabéns! Você subiu " + result.getLevelsGained() + " nível(is)!");
+
+        }
 
 
         return true;
-
     }
 }
