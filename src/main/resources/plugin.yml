@@ -8,3 +8,7 @@ commands:
   rpg:
     description: Mostra informações do personagem
     usage: /rpg
+
+  addxp:
+    description: Adiciona experiência
+    usage: /addxp <jogador> <quantidade>
