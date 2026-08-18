@@ -1,0 +1,10 @@
+name: RPGCore
+version: 1.0
+main: com.nelson.rpg.RpgPlugin
+api-version: '1.21'
+author: Nelson
+description: Sistema RPG utilizando Paper API
+commands:
+  rpg:
+    description: Mostra informações do personagem
+    usage: /rpg
