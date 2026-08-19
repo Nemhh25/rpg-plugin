@@ -4,6 +4,7 @@ main: com.nelson.rpg.RpgPlugin
 api-version: '1.21'
 author: Nelson
 description: Sistema RPG utilizando Paper API
+
 commands:
   rpg:
     description: Mostra informações do personagem
@@ -16,3 +17,11 @@ commands:
   attribute:
     description: Aumenta um atributo do personagem
     usage: /attribute <strength | defense | intelligence>
+
+  skill:
+    description: Usa uma habilidade
+    usage: /skill <fireball>
+
+  attributes:
+    description: Abre o menu de atributos
+    usage: /attributes

@@ -15,4 +15,23 @@ public class AttributeService {
 
         return true;
     }
+
+    public boolean increaseAttribute(RPGCharacter character, AttributeType attributeType, int amount) {
+
+        if (amount <= 0) {
+            return false;
+        }
+
+        if (character.getAttributePoints() < amount) {
+            return false;
+        }
+
+        for (int i = 0; i < amount; i++) {
+
+            increaseAttribute(character, attributeType);
+
+        }
+
+        return true;
+    }
 }

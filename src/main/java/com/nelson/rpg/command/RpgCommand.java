@@ -49,11 +49,12 @@ public class RpgCommand implements CommandExecutor {
         player.sendMessage("§eNível: §f" + character.getLevel());
         player.sendMessage("§eExperiência: §f" + character.getExperience());
         player.sendMessage("§ePontos de atributo: §f" + character.getAttributePoints());
-
+        player.sendMessage("§bMana: §f" + character.getMana() + "§7/§f" + character.getMaxMana());
         player.sendMessage("§6--- Atributos ---");
         player.sendMessage("§eForça: §f" + character.getAttributes().getStrength());
         player.sendMessage("§eDefesa: §f" + character.getAttributes().getDefense());
         player.sendMessage("§eInteligência: §f" + character.getAttributes().getIntelligence());
+
 
 
         return true;

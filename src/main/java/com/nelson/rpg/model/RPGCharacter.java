@@ -7,6 +7,7 @@ public class RPGCharacter {
     private int experience;
     private final Attributes attributes;
     private int attributePoints;
+    private double mana;
 
     public RPGCharacter(String name) {
 
@@ -15,6 +16,7 @@ public class RPGCharacter {
         this.experience = 0;
         this.attributes = new Attributes();
         this.attributePoints = 0;
+        this.mana = 100;
 
     }
 
@@ -32,6 +34,34 @@ public class RPGCharacter {
 
     public Attributes getAttributes() {
         return attributes;
+    }
+
+    public double getMana() {
+        return mana;
+    }
+
+    public double getMaxMana() {
+        return 100 + ((attributes.getIntelligence() - 5) * 10);
+    }
+
+    public boolean consumeMana(double amount) {
+
+        if (mana < amount) {
+
+            return false;
+
+        }
+
+        mana -= amount;
+
+        return true;
+
+    }
+
+    public void restoreMana(double amount) {
+
+        this.mana = Math.min(getMaxMana(), this.mana + amount);
+
     }
 
     public int getAttributePoints() {

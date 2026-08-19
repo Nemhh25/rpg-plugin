@@ -6,7 +6,7 @@ public class Attributes {
     private int defense;
     private int intelligence;
 
-    public Attributes(){
+    public Attributes() {
         this.strength = 5;
         this.defense = 5;
         this.intelligence = 5;
@@ -23,7 +23,8 @@ public class Attributes {
     public int getIntelligence() {
         return intelligence;
     }
-    public Attributes getAttributes(){
+
+    public Attributes getAttributes() {
         return this;
     }
 
@@ -38,6 +39,16 @@ public class Attributes {
             case INTELLIGENCE -> intelligence++;
 
         }
+    }
 
+    public int getValue(AttributeType attributeType) {
+
+        return switch (attributeType) {
+
+            case STRENGTH -> strength;
+            case DEFENSE -> defense;
+            case INTELLIGENCE -> intelligence;
+
+        };
     }
 }

@@ -23,40 +23,78 @@ public class AttributeCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
+
         if (!(sender instanceof Player player)) {
+
             sender.sendMessage(ChatColor.RED + "Only players can execute this command.");
+
             return true;
         }
 
-        if (args.length != 1) {
-            player.sendMessage(ChatColor.RED + "Use: /attribute <strength | defense | intelligence>");
+        if (args.length < 1 || args.length > 2) {
+
+            player.sendMessage("Use: /attribute <strength|defense|intelligence> [quantidade]");
+
             return true;
         }
 
         AttributeType attributeType;
 
         try {
+
             attributeType = AttributeType.valueOf(args[0].toUpperCase());
+
         } catch (IllegalArgumentException e) {
-            player.sendMessage(ChatColor.RED + "Atributo inválido");
+
+            player.sendMessage(ChatColor.RED + "Atributo inválido.");
+
+            return true;
+        }
+
+        int amount = 1;
+
+        if (args.length == 2) {
+
+            try {
+
+                amount = Integer.parseInt(args[1]);
+
+            } catch (NumberFormatException e) {
+
+                player.sendMessage(ChatColor.RED + "A quantidade deve ser um número inteiro.");
+
+                return true;
+            }
+
+        }
+
+        if (amount <= 0) {
+
+            player.sendMessage(ChatColor.RED + "A quantidade deve ser maior que zero.");
+
             return true;
         }
 
         RPGCharacter character = playerManager.getCharacter(player.getUniqueId());
+
         if (character == null) {
-            player.sendMessage(ChatColor.RED + "Você não possui um personagem. ");
+
+            player.sendMessage(ChatColor.RED + "Você não possui um personagem.");
+
             return true;
         }
 
-        boolean success = attributeService.increaseAttribute(character, attributeType);
+        boolean success = attributeService.increaseAttribute(character, attributeType, amount);
 
         if (!success) {
-            player.sendMessage(ChatColor.RED + "Você não possui pontos de atributo.");
+
+            player.sendMessage(ChatColor.RED + "Você não possui pontos de atributo suficientes.");
+
             return true;
         }
 
-        player.sendMessage("§aAtributo aumentado com sucesso!");
-        return true;
+        player.sendMessage("§aVocê aumentou " + attributeType.name() + " em " + amount + " ponto(s)!");
 
+        return true;
     }
 }
