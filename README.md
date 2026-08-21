@@ -573,6 +573,13 @@ O objetivo do projeto foi aplicar, de forma prática, conhecimentos de Java, Pro
 O desenvolvimento de novas funcionalidades foi encerrado após a conclusão do escopo definido para o projeto.
 ---
 
+## 📥 Download
+
+A versão estável do RPGCore pode ser baixada pela página de Releases.
+
+[⬇️ Baixar RPGCore v1.0.0](../../releases/tag/v1.0.0)
+
+---
 ## 👨‍💻 Autor
 
 **Nelson**
