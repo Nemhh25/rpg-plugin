@@ -32,4 +32,16 @@ public class PlayerManager {
 
     }
 
+    public void loadCharacter(UUID uuid, RPGCharacter character) {
+
+        characters.put(uuid, character);
+
+    }
+
+    public void removeCharacter(UUID uuid) {
+
+        characters.remove(uuid);
+
+    }
+
 }

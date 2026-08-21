@@ -25,3 +25,16 @@ commands:
   attributes:
     description: Abre o menu de atributos
     usage: /attributes
+
+  resetcharacter:
+    description: Reseta seu personagem
+    usage: /resetcharacter
+
+
+  giveequipment:
+    description: Recebe um equipamento de teste
+    usage: /giveequipment
+
+  equipment:
+    description: Abre o menu de equipamentos
+    usage: /equipment

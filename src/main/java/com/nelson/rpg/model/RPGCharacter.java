@@ -1,5 +1,12 @@
 package com.nelson.rpg.model;
 
+
+import com.nelson.rpg.model.Equipment;
+import com.nelson.rpg.model.EquipmentType;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class RPGCharacter {
 
     private final String name;
@@ -8,6 +15,8 @@ public class RPGCharacter {
     private final Attributes attributes;
     private int attributePoints;
     private double mana;
+    private double health;
+    private final Map<EquipmentType, Equipment> equippedItems = new HashMap<>();
 
     public RPGCharacter(String name) {
 
@@ -17,7 +26,24 @@ public class RPGCharacter {
         this.attributes = new Attributes();
         this.attributePoints = 0;
         this.mana = 100;
+        this.health = 100;
 
+    }
+    public RPGCharacter(
+            String name,
+            int level,
+            int experience,
+            Attributes attributes,
+            int attributePoints,
+            double mana
+    ) {
+
+        this.name = name;
+        this.level = level;
+        this.experience = experience;
+        this.attributes = attributes;
+        this.attributePoints = attributePoints;
+        this.mana = Math.min(mana, getMaxMana());
     }
 
     public String getName() {
@@ -96,6 +122,51 @@ public class RPGCharacter {
 
         this.experience = Math.max(0, this.experience - amount);
 
+    }
+
+    public void equip(Equipment equipment) {
+        equippedItems.put(equipment.getType(), equipment);
+    }
+
+    public void unequip(EquipmentType type) {
+
+        equippedItems.remove(type);
+    }
+
+    public Equipment getEquipped(EquipmentType type) {
+
+        return equippedItems.get(type);
+
+    }
+
+    public Map<EquipmentType, Equipment> getEquippedItems() {
+
+        return equippedItems;
+
+    }
+
+    public double getHealth() {
+        return health;
+    }
+
+    public double getMaxHealth() {
+        return 100;
+    }
+
+    public void takeDamage(double amount) {
+        this.health = Math.max(0, this.health - amount);
+    }
+
+    public void restoreHealth(double amount) {
+        this.health = Math.min(getMaxHealth(), this.health + amount);
+    }
+
+    public void restoreFullHealth() {
+        this.health = getMaxHealth();
+    }
+
+    public boolean isAlive() {
+        return health > 0;
     }
 
 
